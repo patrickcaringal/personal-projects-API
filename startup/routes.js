@@ -1,14 +1,7 @@
 /* eslint-disable no-console */
-// const indexRouter = require('../routes/index');
-// const usersRouter = require('../routes/users');
-// const mflixMovies = require('../routes/mflix/movies');
-// const mflixRoute = require('../routes/mflix');
-
 const mflixRoutes = require('../routes/mflix');
 
 module.exports = (app) => {
-    // app.use('/', indexRouter);
-    // app.use('/users', usersRouter);
     mflixRoutes.init(app);
 
     // catch 404
