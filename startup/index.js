@@ -7,7 +7,6 @@ const compression = require('compression');
 require('express-async-errors');
 
 module.exports = (app, rootDir) => {
-    // view engine setup
     app.set('views', path.join(rootDir, 'views'));
     app.set('view engine', 'ejs');
 
