@@ -13,7 +13,6 @@ router.get('/popular', async (req, res) => {
     );
 
     const filtered = data.results.map((m) => m.name);
-
     res.send(filtered);
 });
 
@@ -25,7 +24,6 @@ router.get('/top_rated', async (req, res) => {
     );
 
     const filtered = data.results.map((m) => m.name);
-
     res.send(filtered);
 });
 
