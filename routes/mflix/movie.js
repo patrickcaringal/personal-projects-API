@@ -43,7 +43,6 @@ router.get('/top_rated', async (req, res) => {
     );
 
     const filtered = data.results.map((m) => m.title);
-
     res.send(filtered);
 });
 
@@ -56,7 +55,6 @@ router.get('/upcoming', async (req, res) => {
     );
 
     const filtered = data.results.map((m) => m.title);
-
     res.send(filtered);
 });
 
