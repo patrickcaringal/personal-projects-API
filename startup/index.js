@@ -5,6 +5,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const compression = require('compression');
 require('express-async-errors');
+//
 
 module.exports = (app, rootDir) => {
     app.set('views', path.join(rootDir, 'views'));
