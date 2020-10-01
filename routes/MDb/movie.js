@@ -1,5 +1,6 @@
 const express = require('express');
 const axios = require('axios');
+const genreHelper = require('./genre').functions;
 
 const router = express.Router();
 const { TMDB_BASE_URL: baseUrl, TMDB_API_KEY: apiKey } = process.env;
@@ -23,15 +24,29 @@ Account
 */
 
 router.get('/popular', async (req, res) => {
-    const { country, page = 1 } = req.query;
-    const regionQuery = country ? `&region=${country}` : '';
+    const { page = 1 } = req.query;
 
-    const { data } = await axios.get(
-        `${baseUrl}movie/popular?${requiredQuery}&page=${page}${regionQuery}`
+    let { data: movies } = await axios.get(
+        `${baseUrl}movie/popular?${requiredQuery}&page=${page}`
     );
 
-    const filtered = data.results.map((m) => m.title);
-    res.send(filtered);
+    const genresList = genreHelper.getGenres();
+
+    movies = movies.results.map((movie) => {
+        const { id, title, poster_path, genre_ids } = movie;
+
+        const poster = `https://image.tmdb.org/t/p/w185${poster_path}`;
+        const genres = genre_ids.map((genre) => genresList[genre]);
+
+        return {
+            id,
+            title,
+            poster,
+            genres
+        };
+    });
+
+    res.send(movies);
 });
 
 router.get('/top_rated', async (req, res) => {
@@ -39,7 +54,7 @@ router.get('/top_rated', async (req, res) => {
     const regionQuery = country ? `&region=${country}` : '';
 
     const { data } = await axios.get(
-        `${baseUrl}movie/top_rated?${requiredQuery}&page=${page}${regionQuery}`
+        `${baseUrl}movie/top_rated?${requiredQuery}&page=${page}`
     );
 
     const filtered = data.results.map((m) => m.title);
@@ -51,7 +66,7 @@ router.get('/upcoming', async (req, res) => {
     const regionQuery = country ? `&region=${country}` : '';
 
     const { data } = await axios.get(
-        `${baseUrl}movie/upcoming?${requiredQuery}&page=${page}${regionQuery}`
+        `${baseUrl}movie/upcoming?${requiredQuery}&page=${page}`
     );
 
     const filtered = data.results.map((m) => m.title);

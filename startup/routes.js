@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
-const mflixRoutes = require('../routes/mflix');
+const MDbRoutes = require('../routes/MDb');
 
 module.exports = (app) => {
-    mflixRoutes.init(app);
+    MDbRoutes.init(app);
 
     // catch 404
     app.use((req, res) => {
