@@ -1,7 +1,7 @@
 const popular_movies = [
     {
         id: 671039,
-        title: 'Rogue City',
+        title: 'Rogue City x',
         poster:
             'https://image.tmdb.org/t/p/w185/9HT9982bzgN5on1sLRmc1GMn6ZC.jpg',
         genres: ['Thriller', 'Action', 'Drama', 'Crime'],

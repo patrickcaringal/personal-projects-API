@@ -27,6 +27,28 @@ router.get('/popular', async (req, res) => {
     res.send(movies);
 });
 
+router.get('/trending', async (req, res) => {
+    let { data: movies } = await axios.get(appEndpoint('trending/movie/week'));
+
+    const genresList = getGenres();
+
+    movies = movies.results.map((movie) => {
+        const { id, title, poster_path, genre_ids, release_date } = movie;
+        const poster = appImagePath(185, poster_path);
+        const genres = genre_ids.map((genre) => genresList[genre]);
+
+        return {
+            id,
+            title,
+            poster,
+            genres,
+            release_date
+        };
+    });
+
+    res.send(movies);
+});
+
 // router.get('/top_rated', async (req, res) => {
 //     const { country, page = 1 } = req.query;
 //     const regionQuery = country ? `&region=${country}` : '';

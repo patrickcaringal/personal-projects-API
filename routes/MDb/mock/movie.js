@@ -8,4 +8,8 @@ router.get('/popular', async (req, res) => {
     res.send(popular_movies);
 });
 
+router.get('/trending', async (req, res) => {
+    res.send(popular_movies);
+});
+
 module.exports = router;
