@@ -1,30 +1,64 @@
 const express = require('express');
 const axios = require('axios');
-
 const router = express.Router();
-const { TMDB_BASE_URL: baseUrl, TMDB_API_KEY: apiKey } = process.env;
-const requiredQuery = `api_key=${apiKey}&language=en-US`;
+
+const { getGenres } = require('./genre').functions;
+const { appEndpoint, appImagePath } = require('./utlis');
 
 router.get('/popular', async (req, res) => {
-    const { page = 1 } = req.query;
+    let { data: tvShows } = await axios.get(appEndpoint('tv/popular'));
 
-    const { data } = await axios.get(
-        `${baseUrl}tv/popular?${requiredQuery}&page=${page}`
-    );
+    const genresList = getGenres();
 
-    const filtered = data.results.map((m) => m.name);
-    res.send(filtered);
+    tvShows = tvShows.results.map((tvShow) => {
+        const {
+            id,
+            name: title,
+            poster_path,
+            genre_ids,
+            first_air_date: release_date
+        } = tvShow;
+        const poster = appImagePath(185, poster_path);
+        const genres = genre_ids.map((genre) => genresList[genre]);
+
+        return {
+            id,
+            title,
+            poster,
+            genres,
+            release_date
+        };
+    });
+
+    res.send(tvShows);
 });
 
-router.get('/top_rated', async (req, res) => {
-    const { page = 1 } = req.query;
+router.get('/trending', async (req, res) => {
+    let { data: tvShows } = await axios.get(appEndpoint('trending/tv/week'));
 
-    const { data } = await axios.get(
-        `${baseUrl}tv/top_rated?${requiredQuery}&page=${page}`
-    );
+    const genresList = getGenres();
 
-    const filtered = data.results.map((m) => m.name);
-    res.send(filtered);
+    tvShows = tvShows.results.map((tvShow) => {
+        const {
+            id,
+            name: title,
+            poster_path,
+            genre_ids,
+            first_air_date: release_date
+        } = tvShow;
+        const poster = appImagePath(185, poster_path);
+        const genres = genre_ids.map((genre) => genresList[genre]);
+
+        return {
+            id,
+            title,
+            poster,
+            genres,
+            release_date
+        };
+    });
+
+    res.send(tvShows);
 });
 
 module.exports = router;

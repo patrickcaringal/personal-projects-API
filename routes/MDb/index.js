@@ -9,8 +9,10 @@ module.exports = {
     init: (app) => {
         if (env === 'development') {
             app.use('/MDb/movie', require('./mock/movie'));
+            app.use('/MDb/tv', require('./mock/tv'));
         } else {
             app.use('/MDb/movie', movie);
+            app.use('/MDb/tv', tv);
             // app.use('/MDb/genre', genre);
             // app.use('/MDb/tv', tv);
             // app.use('/MDb/trending', trending);
