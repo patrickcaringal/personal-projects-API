@@ -49,6 +49,25 @@ router.get('/trending', async (req, res) => {
     res.send(movies);
 });
 
+router.get('/discover', async (req, res) => {
+    const queryString = Object.entries(req.query)
+        .map(([key, value]) => value && `${key}=${value.trim()}`)
+        .filter((i) => i)
+        .join('&');
+
+    appEndpoint('discover/movie', queryString);
+
+    // https://api.themoviedb.org/3/discover/movie?api_key=<<api_key>>&language=en-US&sort_by=popularity.asc&include_adult=false&include_video=false&page=1
+
+    // {
+    //     "sort_by": "popularity.desc",
+    //     "with_genres": "12,14",
+    //     "primary_release_date.gte": "2020-11-01",
+    //     "primary_release_date.lte": "2020-11-25"
+    //     }
+    res.send(req.query);
+});
+
 // router.get('/top_rated', async (req, res) => {
 //     const { country, page = 1 } = req.query;
 //     const regionQuery = country ? `&region=${country}` : '';

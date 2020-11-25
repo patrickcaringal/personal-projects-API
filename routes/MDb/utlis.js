@@ -6,7 +6,7 @@ const {
 const apiKeyQS = `api_key=${apiKey}`;
 
 const appEndpoint = (path = '', queryString = '') => {
-    const suffixQuery = `${queryString ? '&' : '?'}${apiKeyQS}`;
+    const suffixQuery = `?${apiKeyQS}${queryString && `&${queryString}`}`;
 
     return `${hostname}${path}${suffixQuery}`;
 };
