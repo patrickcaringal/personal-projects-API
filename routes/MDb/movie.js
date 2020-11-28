@@ -51,7 +51,7 @@ router.get('/discover', async (req, res) => {
     const queryString = getQueryString(req.query);
 
     const { data } = await axios.get(
-        appEndpoint('discover/movie', queryString)
+        appEndpoint('discover/movie', `${queryString}&with_release_type=3`)
     );
 
     const result = {
