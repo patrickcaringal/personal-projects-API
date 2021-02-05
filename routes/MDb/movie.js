@@ -12,7 +12,7 @@ router.get('/popular', async (req, res) => {
 
     movies = movies.results.map((movie) => {
         const { id, title, poster_path, genre_ids, release_date } = movie;
-        const poster = appImagePath(185, poster_path);
+        const poster = appImagePath('w185', poster_path);
         const genres = genre_ids.map((genre) => genresList[genre]);
 
         return {
@@ -32,7 +32,7 @@ router.get('/trending', async (req, res) => {
 
     movies = movies.results.map((movie) => {
         const { id, title, poster_path, genre_ids, release_date } = movie;
-        const poster = appImagePath(185, poster_path);
+        const poster = appImagePath('w185', poster_path);
         const genres = genre_ids.map((genre) => genresList[genre]);
 
         return {
@@ -58,7 +58,7 @@ router.get('/discover', async (req, res) => {
         ...data,
         movies: data.results.map((movie) => {
             const { id, title, poster_path, genre_ids, release_date } = movie;
-            const poster = appImagePath(185, poster_path);
+            const poster = appImagePath('w185', poster_path);
             const genres = genre_ids.map((genre) => genresList[genre]);
 
             return {

@@ -364,7 +364,366 @@ const discover_movies = {
     ]
 };
 
+const discover_tvshows = {
+    page: 1,
+    total_pages: 500,
+    total_results: 10000,
+    tvShows: [
+        {
+            id: 82856,
+            title: 'The Mandalorian',
+            poster:
+                'https://image.tmdb.org/t/p/w185/sWgBv7LV2PRoQgkxwlibdGXKz1S.jpg',
+            genres: ['Sci-Fi & Fantasy', 'Action & Adventure', 'Western'],
+            release_date: '2019-11-12'
+        },
+        {
+            id: 71712,
+            title: 'The Good Doctor',
+            poster:
+                'https://image.tmdb.org/t/p/w185/6tfT03sGp9k4c0J3dypjrI8TSAI.jpg',
+            genres: ['Drama'],
+            release_date: '2017-09-25'
+        },
+        {
+            id: 1416,
+            title: "Grey's Anatomy",
+            poster:
+                'https://image.tmdb.org/t/p/w185/clnyhPqj1SNgpAdeSS6a6fwE6Bo.jpg',
+            genres: ['Drama'],
+            release_date: '2005-03-27'
+        },
+        {
+            id: 71789,
+            title: 'SEAL Team',
+            poster:
+                'https://image.tmdb.org/t/p/w185/uTSLeQTeHevt4fplegmQ6bOnE0Z.jpg',
+            genres: ['Action & Adventure', 'Drama', 'War & Politics'],
+            release_date: '2017-09-27'
+        },
+        {
+            id: 63174,
+            title: 'Lucifer',
+            poster:
+                'https://image.tmdb.org/t/p/w185/4EYPN5mVIhKLfxGruy7Dy41dTVn.jpg',
+            genres: ['Crime', 'Sci-Fi & Fantasy'],
+            release_date: '2016-01-25'
+        },
+        {
+            id: 62286,
+            title: 'Fear the Walking Dead',
+            poster:
+                'https://image.tmdb.org/t/p/w185/wGFUewXPeMErCe2xnCmmLEiHOGh.jpg',
+            genres: ['Action & Adventure', 'Drama'],
+            release_date: '2015-08-23'
+        },
+        {
+            id: 89844,
+            title: '30 Coins',
+            poster:
+                'https://image.tmdb.org/t/p/w185/lw70w94nzCmIVSQvtMcuAjWHfWX.jpg',
+            genres: ['Crime', 'Mystery', 'Drama'],
+            release_date: '2020-11-29'
+        },
+        {
+            id: 87739,
+            title: "The Queen's Gambit",
+            poster:
+                'https://image.tmdb.org/t/p/w185/zU0htwkhNvBQdVSIKB9s6hgVeFK.jpg',
+            genres: ['Drama'],
+            release_date: '2020-10-23'
+        },
+        {
+            id: 68507,
+            title: 'His Dark Materials',
+            poster:
+                'https://image.tmdb.org/t/p/w185/g6tIKGc3f1H5QMz1dcgCwADKpZ7.jpg',
+            genres: ['Drama', 'Sci-Fi & Fantasy'],
+            release_date: '2019-11-03'
+        },
+        {
+            id: 97180,
+            title: 'Selena: The Series',
+            poster:
+                'https://image.tmdb.org/t/p/w185/mYsWyfiIMxx4HDm0Wck7oJ9ckez.jpg',
+            genres: ['Drama'],
+            release_date: '2020-12-04'
+        },
+        {
+            id: 69050,
+            title: 'Riverdale',
+            poster:
+                'https://image.tmdb.org/t/p/w185/4X7o1ssOEvp4BFLim1AZmPNcYbU.jpg',
+            genres: ['Drama', 'Mystery'],
+            release_date: '2017-01-26'
+        },
+        {
+            id: 83851,
+            title: 'The Undoing',
+            poster:
+                'https://image.tmdb.org/t/p/w185/3tDbJxobPN3EI2bBebL6zmusmw5.jpg',
+            genres: ['Drama', 'Crime', 'Mystery'],
+            release_date: '2020-10-25'
+        },
+        {
+            id: 85552,
+            title: 'Euphoria',
+            poster:
+                'https://image.tmdb.org/t/p/w185/5mi3aRl16yKmfpQJMzvqN5TXkdA.jpg',
+            genres: ['Drama'],
+            release_date: '2019-06-16'
+        },
+        {
+            id: 75006,
+            title: 'The Umbrella Academy',
+            poster:
+                'https://image.tmdb.org/t/p/w185/scZlQQYnDVlnpxFTxaIv2g0BWnL.jpg',
+            genres: ['Action & Adventure', 'Sci-Fi & Fantasy', 'Drama'],
+            release_date: '2019-02-15'
+        },
+        {
+            id: 76479,
+            title: 'The Boys',
+            poster:
+                'https://image.tmdb.org/t/p/w185/mY7SeH4HFFxW1hiI6cWuwCRKptN.jpg',
+            genres: ['Sci-Fi & Fantasy', 'Action & Adventure'],
+            release_date: '2019-07-25'
+        },
+        {
+            id: 456,
+            title: 'The Simpsons',
+            poster:
+                'https://image.tmdb.org/t/p/w185/2IWouZK4gkgHhJa3oyYuSWfSqbG.jpg',
+            genres: ['Animation', 'Comedy', 'Family', 'Drama'],
+            release_date: '1989-12-16'
+        },
+        {
+            id: 94305,
+            title: 'The Walking Dead: World Beyond',
+            poster:
+                'https://image.tmdb.org/t/p/w185/z31GxpVgDsFAF4paZR8PRsiP16D.jpg',
+            genres: ['Drama', 'Sci-Fi & Fantasy', 'Mystery'],
+            release_date: '2020-10-04'
+        },
+        {
+            id: 18165,
+            title: 'The Vampire Diaries',
+            poster:
+                'https://image.tmdb.org/t/p/w185/aBkVgChtyyJaHyZh1gfd8DbzQon.jpg',
+            genres: ['Drama', 'Fantasy', 'Horror', 'Romance'],
+            release_date: '2009-09-10'
+        },
+        {
+            id: 1399,
+            title: 'Game of Thrones',
+            poster:
+                'https://image.tmdb.org/t/p/w185/u3bZgnGQ9T01sWNhyveQz0wH0Hl.jpg',
+            genres: [
+                'Sci-Fi & Fantasy',
+                'Drama',
+                'Action & Adventure',
+                'Mystery'
+            ],
+            release_date: '2011-04-17'
+        },
+        {
+            id: 1622,
+            title: 'Supernatural',
+            poster:
+                'https://image.tmdb.org/t/p/w185/KoYWXbnYuS3b0GyQPkbuexlVK9.jpg',
+            genres: ['Drama', 'Mystery', 'Sci-Fi & Fantasy'],
+            release_date: '2005-09-13'
+        }
+    ]
+};
+
+const discover_people = {
+    page: 1,
+    results: [
+        {
+            id: 2524,
+            name: 'Tom Hardy',
+            known_for: [
+                'Inception',
+                'Mad Max: Fury Road',
+                'The Dark Knight Rises'
+            ],
+            poster:
+                'https://image.tmdb.org/t/p/w235_and_h235_face/yVGF9FvDxTDPhGimTbZNfghpllA.jpg'
+        },
+        {
+            id: 500,
+            name: 'Tom Cruise',
+            known_for: [
+                'Edge of Tomorrow',
+                'Oblivion',
+                'Mission: Impossible - Ghost Protocol'
+            ],
+            poster:
+                'https://image.tmdb.org/t/p/w235_and_h235_face/gThaIXgpCm3PCiXwFNDBJCme85y.jpg'
+        },
+        {
+            id: 31,
+            name: 'Tom Hanks',
+            known_for: ['Forrest Gump', 'Toy Story', 'The Green Mile'],
+            poster:
+                'https://image.tmdb.org/t/p/w235_and_h235_face/mKr8PN8sn80LzVaZMg8L52kmakm.jpg'
+        },
+        {
+            id: 1136406,
+            name: 'Tom Holland',
+            known_for: [
+                'Avengers: Infinity War',
+                'Captain America: Civil War',
+                'Avengers: Endgame'
+            ],
+            poster:
+                'https://image.tmdb.org/t/p/w235_and_h235_face/k4Oimp5juy6qHPtFWUFpgEX4Sln.jpg'
+        },
+        {
+            id: 10993,
+            name: 'Tom Felton',
+            known_for: [
+                "Harry Potter and the Philosopher's Stone",
+                'Harry Potter and the Chamber of Secrets',
+                'Harry Potter and the Prisoner of Azkaban'
+            ],
+            poster:
+                'https://image.tmdb.org/t/p/w235_and_h235_face/bg5TcioIqc5Kt6CE609wXziZ9Cm.jpg'
+        },
+        {
+            id: 8396,
+            name: 'Tom Lister Jr.',
+            known_for: ['The Dark Knight', 'Zootopia', 'The Fifth Element'],
+            poster:
+                'https://image.tmdb.org/t/p/w235_and_h235_face/z4VI8zYOLHnR24kkuA9sm13yMQQ.jpg'
+        },
+        {
+            id: 192944,
+            name: 'Tom Ellis',
+            known_for: ['Lucifer', 'The Flash', "Isn't It Romantic"],
+            poster:
+                'https://image.tmdb.org/t/p/w235_and_h235_face/sJkxqJfSgcwussMeywxyrnYxVX.jpg'
+        },
+        {
+            id: 91606,
+            name: 'Tom Hiddleston',
+            known_for: [
+                'The Avengers',
+                'Avengers: Infinity War',
+                'Avengers: Endgame'
+            ],
+            poster:
+                'https://image.tmdb.org/t/p/w235_and_h235_face/mclHxMm8aPlCPKptP67257F5GPo.jpg'
+        },
+        {
+            id: 78798,
+            name: 'Tom Kenny',
+            known_for: [
+                'Ant-Man',
+                'Hotel Transylvania',
+                'Transformers: Revenge of the Fallen'
+            ],
+            poster:
+                'https://image.tmdb.org/t/p/w235_and_h235_face/o6sC2IsjL7KncT4pZBOx4T0WKhM.jpg'
+        },
+        {
+            id: 207442,
+            name: 'Tom Pelphrey',
+            known_for: [
+                'Law & Order: Special Victims Unit',
+                'Blindspot',
+                "Marvel's Iron Fist"
+            ],
+            poster:
+                'https://image.tmdb.org/t/p/w235_and_h235_face/wgO6JambaLfiyUZtdMZRLx7YK0T.jpg'
+        },
+        {
+            id: 4139,
+            name: 'Tom Skerritt',
+            known_for: ['Alien', 'Ted', 'Top Gun'],
+            poster:
+                'https://image.tmdb.org/t/p/w235_and_h235_face/f9vEX1cqrG5aW8DmJ1FKSj4Zjvt.jpg'
+        },
+        {
+            id: 59216,
+            name: 'Tom Cavanagh',
+            known_for: ['The Flash', 'Arrow', 'Supergirl'],
+            poster:
+                'https://image.tmdb.org/t/p/w235_and_h235_face/ySArFxNLO43QJsWBUQ9I85TmnqW.jpg'
+        },
+        {
+            id: 14011,
+            name: 'Tom Courtenay',
+            known_for: [
+                'The Golden Compass',
+                'The Guernsey Literary & Potato Peel Pie Society',
+                'Doctor Zhivago'
+            ],
+            poster:
+                'https://image.tmdb.org/t/p/w235_and_h235_face/qdWWbANnljRUSj56r5BZiD760oi.jpg'
+        },
+        {
+            id: 66062,
+            name: 'Tom Beck',
+            known_for: ['Schlussmacher', 'Vaterfreuden', 'SMS für Dich'],
+            poster:
+                'https://image.tmdb.org/t/p/w235_and_h235_face/BeGaryU2j8cJJ6TFl4Sv39I5NV.jpg'
+        },
+        {
+            id: 77338,
+            name: 'Tom McGowan',
+            known_for: [
+                'As Good as It Gets',
+                'The Last of the Mohicans',
+                'Bean'
+            ],
+            poster:
+                'https://image.tmdb.org/t/p/w235_and_h235_face/yXeRcq0Lgz8RofCcmg72ai97AFE.jpg'
+        },
+        {
+            id: 2428791,
+            name: 'Tom Scanlon',
+            known_for: ["RuPaul's Drag Race UK"],
+            poster:
+                'https://image.tmdb.org/t/p/w235_and_h235_face/xE1a6LtKh17Fr7D2VHutPYJex2w.jpg'
+        },
+        {
+            id: 94854,
+            name: 'Tom Nowicki',
+            known_for: ['Flight', 'The Blind Side', 'Dexter'],
+            poster:
+                'https://image.tmdb.org/t/p/w235_and_h235_face/ofZ5mxqPaMaKkOdmEovbJjXHk5Y.jpg'
+        },
+        {
+            id: 1288795,
+            name: 'Tom Waes',
+            known_for: ['De Zaak Alzheimer', 'SM Rechter', 'Undercover'],
+            poster:
+                'https://image.tmdb.org/t/p/w235_and_h235_face/lcnUa8ZTgq6AaYL1OQppbCERFcd.jpg'
+        },
+        {
+            id: 27678,
+            name: 'Tom Fisher',
+            known_for: ['The Mummy Returns', 'Van Helsing', 'The Illusionist'],
+            poster:
+                'https://image.tmdb.org/t/p/w235_and_h235_face/oVKIxTE5zNg5KlFg2AEZ0vYs2sy.jpg'
+        },
+        {
+            id: 13022,
+            name: 'Tom Berenger',
+            known_for: ['Inception', 'Training Day', 'Platoon'],
+            poster:
+                'https://image.tmdb.org/t/p/w235_and_h235_face/zLxzAdAfu7y02yEx29JSLDgXJZ4.jpg'
+        }
+    ],
+    total_pages: 500,
+    total_results: 10000
+};
+
 module.exports = {
     popular_movies,
-    discover_movies
+    discover_movies,
+    discover_people,
+    discover_tvshows
 };

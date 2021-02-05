@@ -11,7 +11,7 @@ const appEndpoint = (path = '', queryString = '') => {
 };
 
 const appImagePath = (width = 185, path = '') => {
-    return `${imageBasePath}w${width}${path}`;
+    return `${imageBasePath}${width}${path}`;
 };
 
 const getQueryString = (reqQueries) => {
