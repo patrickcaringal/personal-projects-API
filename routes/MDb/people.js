@@ -6,9 +6,14 @@ const { getGenres } = require('./genre').functions;
 const { appEndpoint, appImagePath, getQueryString } = require('./utlis');
 
 router.get('/discover', async (req, res) => {
-    const queryString = getQueryString(req.query);
+    let endpoint = appEndpoint('person/popular');
 
-    let { data } = await axios.get(appEndpoint('search/person', queryString));
+    if (req.query?.query) {
+        const queryString = getQueryString(req.query);
+        endpoint = appEndpoint('search/person', queryString);
+    }
+
+    let { data } = await axios.get(endpoint);
 
     const result = {
         ...data,
