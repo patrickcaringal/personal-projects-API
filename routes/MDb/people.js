@@ -6,10 +6,10 @@ const { getGenres } = require('./genre').functions;
 const { appEndpoint, appImagePath, getQueryString } = require('./utlis');
 
 router.get('/discover', async (req, res) => {
-    let endpoint = appEndpoint('person/popular');
+    const queryString = getQueryString(req.query);
+    let endpoint = appEndpoint('person/popular', queryString);
 
     if (req.query?.query) {
-        const queryString = getQueryString(req.query);
         endpoint = appEndpoint('search/person', queryString);
     }
 
@@ -24,7 +24,7 @@ router.get('/discover', async (req, res) => {
             known_for = known_for.map(
                 (i) => i.original_title || i.original_name
             );
-            const poster = appImagePath('w235_and_h235_face', profile_path);
+            const poster = appImagePath('w300_and_h450_bestv2', profile_path);
 
             return {
                 id,
