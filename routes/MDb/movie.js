@@ -76,6 +76,45 @@ router.get('/discover', async (req, res) => {
     res.send(result);
 });
 
+router.get('/:id/details', async (req, res) => {
+    const { id: movieId } = req.params;
+
+    const { data } = await axios.get(appEndpoint(`movie/${movieId}`));
+
+    const mapData = (data) => {
+        const {
+            original_title,
+            genres: genresData,
+            overview,
+            poster_path,
+            tagline,
+            runtime,
+            release_date,
+            budget,
+            revenue
+        } = data;
+
+        const genres = genresData.map((genre) => genresList[genre.id]);
+        const poster = appImagePath('w185', poster_path);
+
+        return {
+            title: original_title,
+            genres,
+            poster,
+            overview,
+            tagline,
+            runtime,
+            release_date,
+            budget,
+            revenue
+        };
+    };
+
+    const result = mapData(data);
+
+    res.send(result);
+});
+
 // router.get('/top_rated', async (req, res) => {
 //     const { country, page = 1 } = req.query;
 //     const regionQuery = country ? `&region=${country}` : '';
