@@ -79,34 +79,63 @@ router.get('/discover', async (req, res) => {
 router.get('/:id/details', async (req, res) => {
     const { id: movieId } = req.params;
 
-    const { data } = await axios.get(appEndpoint(`movie/${movieId}`));
+    const { data } = await axios.get(
+        appEndpoint(`movie/${movieId}`, 'append_to_response=credits')
+    );
 
     const mapData = (data) => {
         const {
-            original_title,
+            id,
+            backdrop_path,
+            budget,
+            credits: { cast: creditCast, crew: creditCrew },
             genres: genresData,
+            original_title,
             overview,
             poster_path,
-            tagline,
-            runtime,
             release_date,
-            budget,
-            revenue
+            revenue,
+            runtime,
+            tagline,
+            vote_average,
+            vote_count
         } = data;
 
         const genres = genresData.map((genre) => genresList[genre.id]);
-        const poster = appImagePath('w185', poster_path);
+        const poster = appImagePath('w300_and_h450_bestv2', poster_path);
+        const banner = appImagePath(
+            'w1920_and_h800_multi_faces',
+            backdrop_path
+        );
+
+        const cast = creditCast.slice(0, 9).map((i) => {
+            const { character, name, profile_path } = i;
+            return {
+                profile_photo: appImagePath('w138_and_h175_face', profile_path),
+                character,
+                name
+            };
+        });
+        const director = creditCrew
+            .filter((i) => i.job === 'Director')
+            .map((i) => i.name);
 
         return {
-            title: original_title,
-            genres,
-            poster,
-            overview,
-            tagline,
-            runtime,
-            release_date,
+            id,
+            banner,
             budget,
-            revenue
+            cast,
+            director,
+            genres,
+            overview,
+            poster,
+            release_date,
+            revenue,
+            runtime,
+            tagline,
+            title: original_title,
+            vote_average,
+            vote_count
         };
     };
 
