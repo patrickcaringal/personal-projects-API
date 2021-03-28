@@ -80,7 +80,7 @@ router.get('/:id/details', async (req, res) => {
     const { id: movieId } = req.params;
 
     const { data } = await axios.get(
-        appEndpoint(`movie/${movieId}`, 'append_to_response=credits')
+        appEndpoint(`movie/${movieId}`, 'append_to_response=credits,similar')
     );
 
     const mapData = (data) => {
@@ -90,13 +90,14 @@ router.get('/:id/details', async (req, res) => {
             budget,
             credits: { cast: creditCast, crew: creditCrew },
             genres: genresData,
-            original_title,
             overview,
             poster_path,
+            similar: rawRecommendations,
             release_date,
             revenue,
             runtime,
             tagline,
+            title,
             vote_average,
             vote_count
         } = data;
@@ -111,7 +112,7 @@ router.get('/:id/details', async (req, res) => {
         const cast = creditCast.slice(0, 9).map((i) => {
             const { character, name, profile_path } = i;
             return {
-                profile_photo: appImagePath('w138_and_h175_face', profile_path),
+                poster: appImagePath('w138_and_h175_face', profile_path),
                 character,
                 name
             };
@@ -119,6 +120,28 @@ router.get('/:id/details', async (req, res) => {
         const director = creditCrew
             .filter((i) => i.job === 'Director')
             .map((i) => i.name);
+
+        const recommendations = rawRecommendations.results
+            .slice(0, 10)
+            .map((movie) => {
+                const {
+                    id,
+                    title,
+                    poster_path,
+                    genre_ids,
+                    release_date
+                } = movie;
+                const poster = appImagePath('w185', poster_path);
+                const genres = genre_ids.map((genre) => genresList[genre]);
+
+                return {
+                    id,
+                    title,
+                    poster,
+                    genres,
+                    release_date
+                };
+            });
 
         return {
             id,
@@ -129,11 +152,12 @@ router.get('/:id/details', async (req, res) => {
             genres,
             overview,
             poster,
+            recommendations,
             release_date,
             revenue,
             runtime,
             tagline,
-            title: original_title,
+            title,
             vote_average,
             vote_count
         };
