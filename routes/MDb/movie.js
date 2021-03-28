@@ -92,7 +92,8 @@ router.get('/:id/details', async (req, res) => {
             genres: genresData,
             overview,
             poster_path,
-            similar: rawRecommendations,
+            production_companies: raw_production_companies,
+            similar: raw_recommendations,
             release_date,
             revenue,
             runtime,
@@ -121,7 +122,7 @@ router.get('/:id/details', async (req, res) => {
             .filter((i) => i.job === 'Director')
             .map((i) => i.name);
 
-        const recommendations = rawRecommendations.results
+        const recommendations = raw_recommendations.results
             .slice(0, 10)
             .map((movie) => {
                 const {
@@ -143,6 +144,13 @@ router.get('/:id/details', async (req, res) => {
                 };
             });
 
+        const production_companies = raw_production_companies
+            .filter((i) => i.logo_path)
+            .map((movie) => ({
+                logo: appImagePath('w92', movie.logo_path),
+                name: movie.name
+            }));
+
         return {
             id,
             banner,
@@ -152,6 +160,7 @@ router.get('/:id/details', async (req, res) => {
             genres,
             overview,
             poster,
+            production_companies,
             recommendations,
             release_date,
             revenue,
