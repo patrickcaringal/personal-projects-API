@@ -83,10 +83,22 @@ router.get('/:id/details', async (req, res) => {
         appEndpoint(`movie/${movieId}`, 'append_to_response=credits,similar')
     );
 
+    const collectionId = data?.belongs_to_collection?.id;
+
+    let rawCollection = [];
+    if (collectionId) {
+        const {
+            data: { parts = [] }
+        } = await axios.get(appEndpoint(`collection/${collectionId}`));
+
+        rawCollection = parts;
+    }
+
     const mapData = (data) => {
         const {
             id,
             backdrop_path,
+            // belongs_to_collection: { id: collectionId },
             budget,
             credits: { cast: creditCast, crew: creditCrew },
             genres: genresData,
@@ -102,6 +114,8 @@ router.get('/:id/details', async (req, res) => {
             vote_average,
             vote_count
         } = data;
+
+        // console.log(collectionId);
 
         const genres = genresData.map((genre) => genresList[genre.id]);
         const poster = appImagePath('w300_and_h450_bestv2', poster_path);
@@ -151,11 +165,37 @@ router.get('/:id/details', async (req, res) => {
                 name: movie.name
             }));
 
+        let collection = [];
+        if (rawCollection) {
+            collection = rawCollection.map((movie) => {
+                const {
+                    id,
+                    title,
+                    poster_path,
+                    genre_ids,
+                    release_date,
+                    overview
+                } = movie;
+                const poster = appImagePath('w185', poster_path);
+                const genres = genre_ids.map((genre) => genresList[genre]);
+
+                return {
+                    id,
+                    title,
+                    poster,
+                    genres,
+                    release_date,
+                    overview
+                };
+            });
+        }
+
         return {
             id,
             banner,
             budget,
             cast,
+            collection,
             director,
             genres,
             overview,
