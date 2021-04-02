@@ -115,8 +115,6 @@ router.get('/:id/details', async (req, res) => {
             vote_count
         } = data;
 
-        // console.log(collectionId);
-
         const genres = genresData.map((genre) => genresList[genre.id]);
         const poster = appImagePath('w300_and_h450_bestv2', poster_path);
         const banner = appImagePath(
@@ -167,27 +165,29 @@ router.get('/:id/details', async (req, res) => {
 
         let collection = [];
         if (rawCollection) {
-            collection = rawCollection.map((movie) => {
-                const {
-                    id,
-                    title,
-                    poster_path,
-                    genre_ids,
-                    release_date,
-                    overview
-                } = movie;
-                const poster = appImagePath('w185', poster_path);
-                const genres = genre_ids.map((genre) => genresList[genre]);
+            collection = rawCollection
+                .filter((i) => i.vote_count)
+                .map((movie) => {
+                    const {
+                        id,
+                        title,
+                        poster_path,
+                        genre_ids,
+                        release_date,
+                        overview
+                    } = movie;
+                    const poster = appImagePath('w185', poster_path);
+                    const genres = genre_ids.map((genre) => genresList[genre]);
 
-                return {
-                    id,
-                    title,
-                    poster,
-                    genres,
-                    release_date,
-                    overview
-                };
-            });
+                    return {
+                        id,
+                        title,
+                        poster,
+                        genres,
+                        release_date,
+                        overview
+                    };
+                });
         }
 
         return {
