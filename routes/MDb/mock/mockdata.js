@@ -721,9 +721,217 @@ const discover_people = {
     total_results: 10000
 };
 
+const movie_detail = {
+    id: 464052,
+    banner:
+        'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/egg7KFi18TSQc1s24RMmR9i2zO6.jpg',
+    budget: 200000000,
+    cast: [
+        {
+            poster:
+                'https://image.tmdb.org/t/p/w138_and_h175_face/fysvehTvU6bE3JgxaOTRfvQJzJ4.jpg',
+            character: 'Diana Prince / Wonder Woman',
+            name: 'Gal Gadot'
+        },
+        {
+            poster:
+                'https://image.tmdb.org/t/p/w138_and_h175_face/ipG3BMO8Ckv9xVeEY27lzq975Qm.jpg',
+            character: 'Steve Trevor',
+            name: 'Chris Pine'
+        },
+        {
+            poster:
+                'https://image.tmdb.org/t/p/w138_and_h175_face/nwj7ibxkzYOYgcyGHCKV2qNwgxX.jpg',
+            character: 'Barbara Minerva / Cheetah',
+            name: 'Kristen Wiig'
+        },
+        {
+            poster:
+                'https://image.tmdb.org/t/p/w138_and_h175_face/wROJBhRvazeFl1SIWfzwMcKrYYn.jpg',
+            character: 'Maxwell Lord',
+            name: 'Pedro Pascal'
+        },
+        {
+            poster:
+                'https://image.tmdb.org/t/p/w138_and_h175_face/lj5o0pvHfWCEaPX3rzeGQkfIQzj.jpg',
+            character: 'Antiope',
+            name: 'Robin Wright'
+        },
+        {
+            poster:
+                'https://image.tmdb.org/t/p/w138_and_h175_face/gSQ3O3PJ6ly6nT63joOtfZyscFP.jpg',
+            character: 'Hippolyta',
+            name: 'Connie Nielsen'
+        },
+        {
+            poster:
+                'https://image.tmdb.org/t/p/w138_and_h175_face/phfygRDYezltJge7s7UD4M6IMdI.jpg',
+            character: 'Young Diana',
+            name: 'Lilly Aspell'
+        },
+        {
+            poster:
+                'https://image.tmdb.org/t/p/w138_and_h175_face/5rMQibz1vTvs8nfNQOvd4gpQvCX.jpg',
+            character: 'Emir Said Bin Abydos',
+            name: 'Amr Waked'
+        },
+        {
+            poster:
+                'https://image.tmdb.org/t/p/w138_and_h175_face/m4bwq7WE2lESK16QskibtrHnpQW.jpg',
+            character: 'Handsome Man',
+            name: 'Kristoffer Polaha'
+        }
+    ],
+    collection: [
+        {
+            id: 464052,
+            title: 'Wonder Woman 1984',
+            poster:
+                'https://image.tmdb.org/t/p/w185/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg',
+            genres: ['Fantasy', 'Action', 'Adventure'],
+            release_date: '2020-12-16',
+            overview:
+                'A botched store robbery places Wonder Woman in a global battle against a powerful and mysterious ancient force that puts her powers in jeopardy.'
+        },
+        {
+            id: 297762,
+            title: 'Wonder Woman',
+            poster:
+                'https://image.tmdb.org/t/p/w185/imekS7f1OuHyUP2LAiTEM0zBzUz.jpg',
+            genres: ['Action', 'Adventure', 'Fantasy'],
+            release_date: '2017-05-30',
+            overview:
+                'An Amazon princess comes to the world of Man in the grips of the First World War to confront the forces of evil and bring an end to human conflict.'
+        }
+    ],
+    director: ['Patty Jenkins'],
+    genres: ['Fantasy', 'Action', 'Adventure'],
+    overview:
+        'A botched store robbery places Wonder Woman in a global battle against a powerful and mysterious ancient force that puts her powers in jeopardy.',
+    poster:
+        'https://image.tmdb.org/t/p/w300_and_h450_bestv2/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg',
+    production_companies: [
+        {
+            logo:
+                'https://image.tmdb.org/t/p/w92/2Tc1P3Ac8M479naPp1kYT3izLS5.png',
+            name: 'DC Entertainment'
+        },
+        {
+            logo:
+                'https://image.tmdb.org/t/p/w92/ky0xOc5OrhzkZ1N6KyUxacfQsCk.png',
+            name: 'Warner Bros. Pictures'
+        },
+        {
+            logo:
+                'https://image.tmdb.org/t/p/w92/13F3Jf7EFAcREU0xzZqJnVnyGXu.png',
+            name: 'DC Films'
+        },
+        {
+            logo:
+                'https://image.tmdb.org/t/p/w92/z7H707qUWigbjHnJDMfj6QITEpb.png',
+            name: 'Atlas Entertainment'
+        },
+        {
+            logo:
+                'https://image.tmdb.org/t/p/w92/2Tc1P3Ac8M479naPp1kYT3izLS5.png',
+            name: 'DC Comics'
+        }
+    ],
+    recommendations: [
+        {
+            id: 9738,
+            title: 'Fantastic Four',
+            poster:
+                'https://image.tmdb.org/t/p/w185/8HLQLILZLhDQWO6JDpvY6XJLH75.jpg',
+            genres: ['Action', 'Adventure', 'Fantasy', 'Science Fiction'],
+            release_date: '2005-06-29'
+        },
+        {
+            id: 246655,
+            title: 'X-Men: Apocalypse',
+            poster:
+                'https://image.tmdb.org/t/p/w185/2mtQwJKVKQrZgTz49Dizb25eOQQ.jpg',
+            genres: ['Action', 'Adventure', 'Science Fiction', 'Fantasy'],
+            release_date: '2016-05-18'
+        },
+        {
+            id: 36586,
+            title: 'Blade II',
+            poster:
+                'https://image.tmdb.org/t/p/w185/vulF0iqX5z7AW1pdZ572zwsMRMB.jpg',
+            genres: ['Fantasy', 'Horror', 'Action', 'Thriller'],
+            release_date: '2002-03-22'
+        },
+        {
+            id: 36647,
+            title: 'Blade',
+            poster:
+                'https://image.tmdb.org/t/p/w185/e6ErRnIgKmoBtcKpht3amsMfo52.jpg',
+            genres: ['Horror', 'Action'],
+            release_date: '1998-08-21'
+        },
+        {
+            id: 1924,
+            title: 'Superman',
+            poster:
+                'https://image.tmdb.org/t/p/w185/d7px1FQxW4tngdACVRsCSaZq0Xl.jpg',
+            genres: ['Science Fiction', 'Action', 'Adventure'],
+            release_date: '1978-12-13'
+        },
+        {
+            id: 9531,
+            title: 'Superman III',
+            poster:
+                'https://image.tmdb.org/t/p/w185/c4oR6qgZW2s5foGkQi2Dd86KuAS.jpg',
+            genres: ['Comedy', 'Science Fiction', 'Action', 'Adventure'],
+            release_date: '1983-06-17'
+        },
+        {
+            id: 8536,
+            title: 'Superman II',
+            poster:
+                'https://image.tmdb.org/t/p/w185/r9ZRah6rYBoRuPyj8g5Ei411XNM.jpg',
+            genres: ['Science Fiction', 'Action', 'Adventure'],
+            release_date: '1980-12-04'
+        },
+        {
+            id: 1979,
+            title: 'Fantastic Four: Rise of the Silver Surfer',
+            poster:
+                'https://image.tmdb.org/t/p/w185/9wRfzTcMyyzkQxVDqBHv8RwuZOv.jpg',
+            genres: ['Adventure', 'Fantasy', 'Action', 'Thriller'],
+            release_date: '2007-06-13'
+        },
+        {
+            id: 1452,
+            title: 'Superman Returns',
+            poster:
+                'https://image.tmdb.org/t/p/w185/qIegbn6DSUYmggfwxOBNOVS35q.jpg',
+            genres: ['Science Fiction', 'Action', 'Adventure'],
+            release_date: '2006-06-28'
+        },
+        {
+            id: 299537,
+            title: 'Captain Marvel',
+            poster:
+                'https://image.tmdb.org/t/p/w185/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg',
+            genres: ['Action', 'Adventure', 'Science Fiction'],
+            release_date: '2019-03-06'
+        }
+    ],
+    release_date: '2020-12-16',
+    revenue: 165160000,
+    runtime: 151,
+    tagline: 'A new era of wonder begins.',
+    title: 'Wonder Woman 1984',
+    vote_average: 6.8,
+    vote_count: 4613
+};
+
 module.exports = {
     popular_movies,
     discover_movies,
     discover_people,
-    discover_tvshows
+    discover_tvshows,
+    movie_detail
 };

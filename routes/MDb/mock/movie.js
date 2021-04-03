@@ -1,5 +1,5 @@
 const express = require('express');
-const { popular_movies, discover_movies } = require('./mockdata');
+const { popular_movies, discover_movies, movie_detail } = require('./mockdata');
 
 const router = express.Router();
 
@@ -13,6 +13,11 @@ router.get('/trending', async (req, res) => {
 
 router.get('/discover', async (req, res) => {
     res.send(discover_movies);
+});
+
+router.get('/:id/details', async (req, res) => {
+    console.log('lord');
+    res.send(movie_detail);
 });
 
 module.exports = router;

@@ -98,7 +98,6 @@ router.get('/:id/details', async (req, res) => {
         const {
             id,
             backdrop_path,
-            // belongs_to_collection: { id: collectionId },
             budget,
             credits: { cast: creditCast, crew: creditCrew },
             genres: genresData,
@@ -187,7 +186,11 @@ router.get('/:id/details', async (req, res) => {
                         release_date,
                         overview
                     };
-                });
+                })
+                .sort(
+                    (a, b) =>
+                        new Date(b?.release_date) - new Date(a?.release_date)
+                );
         }
 
         return {
