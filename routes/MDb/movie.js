@@ -28,19 +28,27 @@ router.get('/popular', async (req, res) => {
 });
 
 router.get('/trending', async (req, res) => {
-    let { data: movies } = await axios.get(appEndpoint('trending/movie/week'));
+    let { data: movies } = await axios.get(appEndpoint('trending/all/week'));
 
     movies = movies.results.map((movie) => {
-        const { id, title, poster_path, genre_ids, release_date } = movie;
+        const {
+            id,
+            title,
+            name,
+            poster_path,
+            genre_ids,
+            release_date,
+            first_air_date
+        } = movie;
         const poster = appImagePath('w185', poster_path);
         const genres = genre_ids.map((genre) => genresList[genre]);
 
         return {
             id,
-            title,
+            title: title || name,
             poster,
             genres,
-            release_date
+            release_date: release_date || first_air_date
         };
     });
 
@@ -80,7 +88,10 @@ router.get('/:id/details', async (req, res) => {
     const { id: movieId } = req.params;
 
     const { data } = await axios.get(
-        appEndpoint(`movie/${movieId}`, 'append_to_response=credits,similar')
+        appEndpoint(
+            `movie/${movieId}`,
+            'append_to_response=credits,recommendations,images,videos,keywords'
+        )
     );
 
     const collectionId = data?.belongs_to_collection?.id;
@@ -97,19 +108,22 @@ router.get('/:id/details', async (req, res) => {
     const mapData = (data) => {
         const {
             id,
+            images: { backdrops: raw_photos },
             backdrop_path,
             budget,
             credits: { cast: creditCast, crew: creditCrew },
             genres: genresData,
+            keywords: { keywords },
             overview,
             poster_path,
             production_companies: raw_production_companies,
-            similar: raw_recommendations,
+            recommendations: raw_recommendations,
             release_date,
             revenue,
             runtime,
             tagline,
             title,
+            videos: { results: raw_videos },
             vote_average,
             vote_count
         } = data;
@@ -132,6 +146,19 @@ router.get('/:id/details', async (req, res) => {
         const director = creditCrew
             .filter((i) => i.job === 'Director')
             .map((i) => i.name);
+
+        const photos = raw_photos.map((i) =>
+            appImagePath('w500_and_h282_face', i.file_path)
+        );
+
+        const videos = raw_videos
+            .filter((i) => i.site === 'YouTube')
+            .map((i) => ({
+                id: i.key,
+                description: i.name,
+                thumbnail: `https://i.ytimg.com/vi/${i.key}/hqdefault.jpg`,
+                video: `https://www.youtube.com/watch?v=${i.key}`
+            }));
 
         const recommendations = raw_recommendations.results
             .slice(0, 10)
@@ -201,7 +228,9 @@ router.get('/:id/details', async (req, res) => {
             collection,
             director,
             genres,
+            keywords,
             overview,
+            photos,
             poster,
             production_companies,
             recommendations,
@@ -210,6 +239,7 @@ router.get('/:id/details', async (req, res) => {
             runtime,
             tagline,
             title,
+            videos,
             vote_average,
             vote_count
         };
