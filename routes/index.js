@@ -4,15 +4,13 @@ const tv = require('./tv');
 // const genre = require('./genre').router;
 // const trending = require('./trending');
 
-const { NODE_ENV: env } = process.env;
-
 module.exports = {
     init: (app) => {
         app.get('/', (req, res) => {
             res.render('index', { title: process.env.APP_NAME });
         });
 
-        if (env === 'development') {
+        if (process.env.NODE_ENV === 'development') {
             app.use('/movie', require('./mock/movie'));
             app.use('/people', require('./mock/people'));
             app.use('/tv', require('./mock/tv'));
