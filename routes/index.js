@@ -1,11 +1,8 @@
-const genre = require('./genre').router;
 const movie = require('./movie');
 const people = require('./people');
 const tv = require('./tv');
-const trending = require('./trending');
-
-const express = require('express');
-const router = express.Router();
+// const genre = require('./genre').router;
+// const trending = require('./trending');
 
 const { NODE_ENV: env } = process.env;
 
