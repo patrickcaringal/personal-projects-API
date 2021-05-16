@@ -27,34 +27,6 @@ router.get('/popular', async (req, res) => {
     res.send(movies);
 });
 
-router.get('/trending', async (req, res) => {
-    let { data: movies } = await axios.get(appEndpoint('trending/all/week'));
-
-    movies = movies.results.map((movie) => {
-        const {
-            id,
-            title,
-            name,
-            poster_path,
-            genre_ids,
-            release_date,
-            first_air_date
-        } = movie;
-        const poster = appImagePath('w185', poster_path);
-        const genres = genre_ids.map((genre) => genresList[genre]);
-
-        return {
-            id,
-            title: title || name,
-            poster,
-            genres,
-            release_date: release_date || first_air_date
-        };
-    });
-
-    res.send(movies);
-});
-
 router.get('/discover', async (req, res) => {
     const queryString = getQueryString(req.query);
 
@@ -166,6 +138,7 @@ router.get('/:id/details', async (req, res) => {
                 const {
                     id,
                     title,
+                    media_type,
                     poster_path,
                     genre_ids,
                     release_date
@@ -176,6 +149,7 @@ router.get('/:id/details', async (req, res) => {
                 return {
                     id,
                     title,
+                    media: media_type,
                     poster,
                     genres,
                     release_date

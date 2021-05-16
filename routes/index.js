@@ -1,4 +1,5 @@
 const movie = require('./movie');
+const media = require('./media');
 const people = require('./people');
 const tv = require('./tv');
 // const genre = require('./genre').router;
@@ -15,6 +16,7 @@ module.exports = {
             app.use('/people', require('./mock/people'));
             app.use('/tv', require('./mock/tv'));
         } else {
+            app.use('/media', media);
             app.use('/movie', movie);
             app.use('/people', people);
             app.use('/tv', tv);
