@@ -17,24 +17,6 @@ router.get('/:id/details', async (req, res) => {
         )
     );
 
-    console.log(
-        appEndpoint(
-            `tv/${movieId}`,
-            'append_to_response=credits,recommendations,images,videos,keywords,aggregate_credits'
-        )
-    );
-
-    const collectionId = data?.belongs_to_collection?.id;
-
-    let rawCollection = [];
-    if (collectionId) {
-        const {
-            data: { parts = [] }
-        } = await axios.get(appEndpoint(`collection/${collectionId}`));
-
-        rawCollection = parts;
-    }
-
     const mapData = (data) => {
         const {
             id,
@@ -55,6 +37,7 @@ router.get('/:id/details', async (req, res) => {
             recommendations: raw_recommendations,
             release_date,
             revenue,
+            seasons: rawSeasons,
             tagline,
             videos: { results: raw_videos },
             vote_average,
@@ -132,36 +115,32 @@ router.get('/:id/details', async (req, res) => {
                 name: movie.name
             }));
 
-        let collection = [];
-        if (rawCollection) {
-            collection = rawCollection
-                .filter((i) => i.vote_count)
-                .map((movie) => {
-                    const {
-                        id,
-                        title,
-                        poster_path,
-                        genre_ids,
-                        release_date,
-                        overview
-                    } = movie;
-                    const poster = appImagePath('w185', poster_path);
-                    const genres = genre_ids.map((genre) => genresList[genre]);
+        let collection = rawSeasons
+            .filter((i) => i.season_number)
+            .map((movie) => {
+                const {
+                    id,
+                    name,
+                    poster_path,
+                    air_date,
+                    overview,
+                    episode_count
+                } = movie;
 
-                    return {
-                        id,
-                        title,
-                        poster,
-                        genres,
-                        release_date,
-                        overview
-                    };
-                })
-                .sort(
-                    (a, b) =>
-                        new Date(b?.release_date) - new Date(a?.release_date)
-                );
-        }
+                const poster = appImagePath('w185', poster_path);
+
+                return {
+                    id,
+                    title: name,
+                    poster,
+                    release_date: air_date,
+                    overview,
+                    episode_count
+                };
+            })
+            .sort(
+                (a, b) => new Date(b?.release_date) - new Date(a?.release_date)
+            );
 
         return {
             id,
