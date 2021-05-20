@@ -115,32 +115,37 @@ router.get('/:id/details', async (req, res) => {
                 name: movie.name
             }));
 
-        let collection = rawSeasons
-            .filter((i) => i.season_number)
-            .map((movie) => {
-                const {
-                    id,
-                    name,
-                    poster_path,
-                    air_date,
-                    overview,
-                    episode_count
-                } = movie;
+        let collection =
+            rawSeasons.length < 2
+                ? []
+                : rawSeasons
+                      .filter((i) => i.season_number)
+                      .map((movie) => {
+                          const {
+                              id,
+                              name,
+                              poster_path,
+                              air_date,
+                              overview,
+                              episode_count
+                          } = movie;
 
-                const poster = appImagePath('w185', poster_path);
+                          const poster = appImagePath('w185', poster_path);
 
-                return {
-                    id,
-                    title: name,
-                    poster,
-                    release_date: air_date,
-                    overview,
-                    episode_count
-                };
-            })
-            .sort(
-                (a, b) => new Date(b?.release_date) - new Date(a?.release_date)
-            );
+                          return {
+                              id,
+                              title: name,
+                              poster,
+                              release_date: air_date,
+                              overview,
+                              episode_count
+                          };
+                      })
+                      .sort(
+                          (a, b) =>
+                              new Date(b?.release_date) -
+                              new Date(a?.release_date)
+                      );
 
         return {
             id,

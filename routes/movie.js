@@ -108,11 +108,12 @@ router.get('/:id/details', async (req, res) => {
         );
 
         const cast = creditCast.slice(0, 9).map((i) => {
-            const { character, name, profile_path } = i;
+            const { character, id, name, profile_path } = i;
             return {
-                poster: appImagePath('w138_and_h175_face', profile_path),
+                id,
                 character,
-                name
+                name,
+                poster: appImagePath('w138_and_h175_face', profile_path)
             };
         });
         const director = creditCrew
