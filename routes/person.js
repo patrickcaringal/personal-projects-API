@@ -2,7 +2,6 @@ const express = require('express');
 const axios = require('axios');
 const router = express.Router();
 
-const { getGenres } = require('./genre').functions;
 const { appEndpoint, appImagePath, getQueryString } = require('./utlis');
 const e = require('express');
 
@@ -39,7 +38,6 @@ router.get('/:id/details', async (req, res) => {
         let credits = [];
 
         if (known_for_department === 'Acting') {
-            // .slice(0, 9)
             credits = rawCast.map((i) => {
                 const {
                     id,
@@ -47,6 +45,7 @@ router.get('/:id/details', async (req, res) => {
                     title,
                     media_type,
                     vote_average,
+                    vote_count,
                     poster_path,
                     release_date
                 } = i;
@@ -58,6 +57,7 @@ router.get('/:id/details', async (req, res) => {
                     title,
                     media: media_type,
                     rating: vote_average,
+                    popularity: vote_count,
                     poster,
                     release_date
                 };
@@ -70,6 +70,7 @@ router.get('/:id/details', async (req, res) => {
                     title,
                     media_type,
                     vote_average,
+                    vote_count,
                     poster_path,
                     release_date
                 } = i;
@@ -81,11 +82,16 @@ router.get('/:id/details', async (req, res) => {
                     title,
                     media: media_type,
                     rating: vote_average,
+                    popularity: vote_count,
                     poster,
                     release_date
                 };
             });
         }
+
+        credits = credits.sort(
+            (a, b) => new Date(b?.release_date) - new Date(a?.release_date)
+        );
 
         return {
             biography,
