@@ -56,12 +56,14 @@ router.get('/:id/details', async (req, res) => {
             .slice(0, 9)
             .map((i) => {
                 const {
+                    id,
                     roles,
                     name,
                     profile_path,
                     total_episode_count: episodes
                 } = i;
                 return {
+                    id,
                     poster: appImagePath('w138_and_h175_face', profile_path),
                     character: roles[0].character,
                     name,

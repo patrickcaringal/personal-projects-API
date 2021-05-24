@@ -89,9 +89,11 @@ router.get('/:id/details', async (req, res) => {
             });
         }
 
-        credits = credits.sort(
-            (a, b) => new Date(b?.release_date) - new Date(a?.release_date)
-        );
+        credits = credits
+            .filter((i) => i.release_date)
+            .sort(
+                (a, b) => new Date(b?.release_date) - new Date(a?.release_date)
+            );
 
         return {
             biography,
