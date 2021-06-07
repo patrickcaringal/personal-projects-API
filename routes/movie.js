@@ -225,6 +225,43 @@ router.get('/:id/details', async (req, res) => {
     res.send(result);
 });
 
+router.get('/:id/credits', async (req, res) => {
+    const { id: movieId } = req.params;
+
+    const { data } = await axios.get(appEndpoint(`movie/${movieId}/credits`));
+
+    const mapData = (data) => {
+        const { cast: raw_cast, crew: raw_crew } = data;
+
+        const cast = raw_cast.map((i) => {
+            const { character, id, name, profile_path } = i;
+            return {
+                id,
+                character,
+                name,
+                poster: appImagePath('w138_and_h175_face', profile_path)
+            };
+        });
+
+        const crew = raw_crew.map((i) => {
+            const { department, id, job, name, profile_path } = i;
+            return {
+                id,
+                character: job,
+                department,
+                name,
+                poster: appImagePath('w138_and_h175_face', profile_path)
+            };
+        });
+
+        return { cast, crew };
+    };
+
+    const result = mapData(data);
+
+    res.send(result);
+}); // 791373
+
 // router.get('/top_rated', async (req, res) => {
 //     const { country, page = 1 } = req.query;
 //     const regionQuery = country ? `&region=${country}` : '';
