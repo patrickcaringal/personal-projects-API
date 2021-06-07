@@ -10,29 +10,31 @@ const genresList = getGenres();
 router.get('/trending', async (req, res) => {
     let { data: medias } = await axios.get(appEndpoint('trending/all/week'));
 
-    medias = medias.results.map((media) => {
-        const {
-            id,
-            title,
-            name,
-            media_type,
-            poster_path,
-            genre_ids,
-            release_date,
-            first_air_date
-        } = media;
-        const poster = appImagePath('w185', poster_path);
-        const genres = genre_ids.map((genre) => genresList[genre]);
+    medias = medias.results
+        .sort((a, b) => new Date(b?.vote_count) - new Date(a?.vote_count))
+        .map((media) => {
+            const {
+                id,
+                title,
+                name,
+                media_type,
+                poster_path,
+                genre_ids,
+                release_date,
+                first_air_date
+            } = media;
+            const poster = appImagePath('w185', poster_path);
+            const genres = genre_ids.map((genre) => genresList[genre]);
 
-        return {
-            id,
-            title: title || name,
-            media: media_type,
-            poster,
-            genres,
-            release_date: release_date || first_air_date
-        };
-    });
+            return {
+                id,
+                title: title || name,
+                media: media_type,
+                poster,
+                genres,
+                release_date: release_date || first_air_date
+            };
+        });
 
     res.send(medias);
 });

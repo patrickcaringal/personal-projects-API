@@ -78,7 +78,7 @@ router.get('/:id/details', async (req, res) => {
 
                 return {
                     id,
-                    job,
+                    character: job,
                     title,
                     media: media_type,
                     rating: vote_average,
