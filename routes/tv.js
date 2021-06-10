@@ -181,6 +181,54 @@ router.get('/:id/details', async (req, res) => {
     res.send(result);
 });
 
+router.get('/:id/credits', async (req, res) => {
+    const { id: movieId } = req.params;
+
+    const { data } = await axios.get(
+        appEndpoint(`tv/${movieId}/aggregate_credits`)
+    );
+
+    const mapData = (data) => {
+        const { cast: raw_cast, crew: raw_crew } = data;
+
+        const cast = raw_cast.map((i) => {
+            const { id, name, profile_path, roles, total_episode_count } = i;
+            return {
+                id,
+                character: roles.map((role) => role.character).join(' / '),
+                episodes: total_episode_count,
+                name,
+                poster: appImagePath('w138_and_h175_face', profile_path)
+            };
+        });
+
+        const crew = raw_crew.map((i) => {
+            const {
+                department,
+                id,
+                jobs,
+                name,
+                profile_path,
+                total_episode_count
+            } = i;
+            return {
+                id,
+                character: jobs.map((job) => job.job).join(' / '),
+                department,
+                episodes: total_episode_count,
+                name,
+                poster: appImagePath('w138_and_h175_face', profile_path)
+            };
+        });
+
+        return { cast, crew };
+    };
+
+    const result = mapData(data);
+
+    res.send(result);
+});
+
 // router.get('/popular', async (req, res) => {
 //     let { data: tvShows } = await axios.get(appEndpoint('tv/popular'));
 

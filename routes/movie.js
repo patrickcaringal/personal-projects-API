@@ -260,7 +260,7 @@ router.get('/:id/credits', async (req, res) => {
     const result = mapData(data);
 
     res.send(result);
-}); // 791373
+});
 
 // router.get('/top_rated', async (req, res) => {
 //     const { country, page = 1 } = req.query;
