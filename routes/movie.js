@@ -3,7 +3,12 @@ const axios = require('axios');
 const router = express.Router();
 
 const { getGenres } = require('./genre').functions;
-const { appEndpoint, appImagePath, getQueryString } = require('./utlis');
+const {
+    appEndpoint,
+    appImagePath,
+    getImgPlaceholder,
+    getQueryString
+} = require('./utlis');
 
 const genresList = getGenres();
 
@@ -234,23 +239,28 @@ router.get('/:id/credits', async (req, res) => {
         const { cast: raw_cast, crew: raw_crew } = data;
 
         const cast = raw_cast.map((i) => {
-            const { character, id, name, profile_path } = i;
+            const { character, id, name, profile_path, gender } = i;
+
             return {
                 id,
                 character,
                 name,
-                poster: appImagePath('w138_and_h175_face', profile_path)
+                poster: profile_path
+                    ? appImagePath('w138_and_h175_face', profile_path)
+                    : getImgPlaceholder(gender)
             };
         });
 
         const crew = raw_crew.map((i) => {
-            const { department, id, job, name, profile_path } = i;
+            const { department, id, job, name, profile_path, gender } = i;
             return {
                 id,
                 character: job,
                 department,
                 name,
-                poster: appImagePath('w138_and_h175_face', profile_path)
+                poster: profile_path
+                    ? appImagePath('w138_and_h175_face', profile_path)
+                    : getImgPlaceholder(gender)
             };
         });
 

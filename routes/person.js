@@ -2,8 +2,12 @@ const express = require('express');
 const axios = require('axios');
 const router = express.Router();
 
-const { appEndpoint, appImagePath, getQueryString } = require('./utlis');
-const e = require('express');
+const {
+    appEndpoint,
+    appImagePath,
+    getQueryString,
+    getImgPlaceholder
+} = require('./utlis');
 
 router.get('/:id/details', async (req, res) => {
     const { id: personId } = req.params;
@@ -26,10 +30,13 @@ router.get('/:id/details', async (req, res) => {
             name,
             place_of_birth,
             popularity,
-            profile_path
+            profile_path,
+            gender
         } = data;
 
-        const poster = appImagePath('w300_and_h450_bestv2', profile_path);
+        const poster = profile_path
+            ? appImagePath('w300_and_h450_bestv2', profile_path)
+            : getImgPlaceholder(gender);
 
         const photos = raw_photos.map((i) =>
             appImagePath('w220_and_h330_face', i.file_path)
