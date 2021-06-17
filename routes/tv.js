@@ -3,7 +3,7 @@ const axios = require('axios');
 const router = express.Router();
 
 const { getGenres } = require('./genre').functions;
-const { appEndpoint, appImagePath, getQueryString } = require('./utlis');
+const { appEndpoint, appImagePath, getImgPlaceholder } = require('./utlis');
 
 const genresList = getGenres();
 
@@ -60,11 +60,14 @@ router.get('/:id/details', async (req, res) => {
                     roles,
                     name,
                     profile_path,
-                    total_episode_count: episodes
+                    total_episode_count: episodes,
+                    gender
                 } = i;
                 return {
                     id,
-                    poster: appImagePath('w138_and_h175_face', profile_path),
+                    poster: profile_path
+                        ? appImagePath('w138_and_h175_face', profile_path)
+                        : getImgPlaceholder(gender),
                     character: roles[0].character,
                     name,
                     episodes
@@ -192,13 +195,22 @@ router.get('/:id/credits', async (req, res) => {
         const { cast: raw_cast, crew: raw_crew } = data;
 
         const cast = raw_cast.map((i) => {
-            const { id, name, profile_path, roles, total_episode_count } = i;
+            const {
+                id,
+                name,
+                profile_path,
+                roles,
+                total_episode_count,
+                gender
+            } = i;
             return {
                 id,
                 character: roles.map((role) => role.character).join(' / '),
                 episodes: total_episode_count,
                 name,
-                poster: appImagePath('w138_and_h175_face', profile_path)
+                poster: profile_path
+                    ? appImagePath('w138_and_h175_face', profile_path)
+                    : getImgPlaceholder(gender)
             };
         });
 
@@ -209,7 +221,8 @@ router.get('/:id/credits', async (req, res) => {
                 jobs,
                 name,
                 profile_path,
-                total_episode_count
+                total_episode_count,
+                gender
             } = i;
             return {
                 id,
@@ -217,7 +230,9 @@ router.get('/:id/credits', async (req, res) => {
                 department,
                 episodes: total_episode_count,
                 name,
-                poster: appImagePath('w138_and_h175_face', profile_path)
+                poster: profile_path
+                    ? appImagePath('w138_and_h175_face', profile_path)
+                    : getImgPlaceholder(gender)
             };
         });
 
