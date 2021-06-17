@@ -13,7 +13,7 @@ router.get('/:id/details', async (req, res) => {
     const { data } = await axios.get(
         appEndpoint(
             `tv/${movieId}`,
-            'append_to_response=credits,recommendations,images,videos,keywords,aggregate_credits'
+            'append_to_response=recommendations,images,videos,keywords,aggregate_credits'
         )
     );
 
@@ -184,6 +184,82 @@ router.get('/:id/details', async (req, res) => {
     res.send(result);
 });
 
+router.get('/:id/season/:seasonNumber', async (req, res) => {
+    const { id: tvShowId, seasonNumber } = req.params;
+
+    const { data: seasonData } = await axios.get(
+        appEndpoint(
+            `tv/${tvShowId}/season/${seasonNumber}`,
+            'append_to_response=aggregate_credits'
+        )
+    );
+
+    const mapData = (seasonData) => {
+        const {
+            id,
+            air_date,
+            aggregate_credits: { cast: creditCast },
+            episodes: rawEpisodes,
+            overview,
+            poster_path,
+            season_number
+        } = seasonData;
+
+        const poster = appImagePath('w300_and_h450_bestv2', poster_path);
+        const title = `Season ${season_number}`;
+
+        const cast = creditCast
+            .sort((a, b) => b.total_episode_count - a.total_episode_count)
+            .slice(0, 9)
+            .map((i) => {
+                const {
+                    id,
+                    roles,
+                    name,
+                    profile_path,
+                    total_episode_count: episodes,
+                    gender
+                } = i;
+                return {
+                    id,
+                    poster: profile_path
+                        ? appImagePath('w138_and_h175_face', profile_path)
+                        : getImgPlaceholder(gender),
+                    character: roles[0].character,
+                    name,
+                    episodes
+                };
+            });
+
+        const episodes = rawEpisodes.map((i) => {
+            const { episode_number, name, overview, still_path } = i;
+
+            return {
+                title: name,
+                episodeNumber: episode_number,
+                overview,
+                poster: appImagePath('w227_and_h127_bestv2', still_path)
+            };
+        });
+
+        return {
+            // TODO: add props from tv details
+            id,
+            cast,
+            episodes, // new prop
+            overview,
+            poster,
+            release_date: air_date,
+            season_number, // new prop
+            title
+        };
+    };
+
+    const result = mapData(seasonData);
+
+    res.send(result);
+});
+
 router.get('/:id/credits', async (req, res) => {
     const { id: movieId } = req.params;
 
@@ -243,93 +319,5 @@ router.get('/:id/credits', async (req, res) => {
 
     res.send(result);
 });
-
-// router.get('/popular', async (req, res) => {
-//     let { data: tvShows } = await axios.get(appEndpoint('tv/popular'));
-
-//     const genresList = getGenres();
-
-//     tvShows = tvShows.results.map((tvShow) => {
-//         const {
-//             id,
-//             name: title,
-//             poster_path,
-//             genre_ids,
-//             first_air_date: release_date
-//         } = tvShow;
-//         const poster = appImagePath('w185', poster_path);
-//         const genres = genre_ids.map((genre) => genresList[genre]);
-
-//         return {
-//             id,
-//             title,
-//             poster,
-//             genres,
-//             release_date
-//         };
-//     });
-
-//     res.send(tvShows);
-// });
-
-// router.get('/trending', async (req, res) => {
-//     let { data: tvShows } = await axios.get(appEndpoint('trending/tv/week'));
-
-//     const genresList = getGenres();
-
-//     tvShows = tvShows.results.map((tvShow) => {
-//         const {
-//             id,
-//             name: title,
-//             poster_path,
-//             genre_ids,
-//             first_air_date: release_date
-//         } = tvShow;
-//         const poster = appImagePath('w185', poster_path);
-//         const genres = genre_ids.map((genre) => genresList[genre]);
-
-//         return {
-//             id,
-//             title,
-//             poster,
-//             genres,
-//             release_date
-//         };
-//     });
-
-//     res.send(tvShows);
-// });
-
-// router.get('/discover', async (req, res) => {
-//     const queryString = getQueryString(req.query);
-
-//     const { data } = await axios.get(appEndpoint('discover/tv', queryString));
-
-//     const result = {
-//         ...data,
-//         tvShows: data.results.map((movie) => {
-//             const {
-//                 id,
-//                 name: title,
-//                 poster_path,
-//                 genre_ids,
-//                 first_air_date: release_date
-//             } = movie;
-//             const poster = appImagePath('w185', poster_path);
-//             const genres = genre_ids.map((genre) => genresList[genre]);
-
-//             return {
-//                 id,
-//                 title,
-//                 poster,
-//                 genres,
-//                 release_date
-//             };
-//         })
-//     };
-
-//     delete result.results;
-//     res.send(result);
-// });
 
 module.exports = router;
