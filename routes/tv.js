@@ -184,8 +184,15 @@ router.get('/:id/details', async (req, res) => {
     res.send(result);
 });
 
-router.get('/:id/season/:seasonNumber', async (req, res) => {
+router.get('/:id/season/:seasonNumber/details', async (req, res) => {
     const { id: tvShowId, seasonNumber } = req.params;
+
+    const { data: tvShowData } = await axios.get(
+        appEndpoint(
+            `tv/${tvShowId}`
+            // 'append_to_response=recommendations,keywords'
+        )
+    );
 
     const { data: seasonData } = await axios.get(
         appEndpoint(
@@ -194,7 +201,9 @@ router.get('/:id/season/:seasonNumber', async (req, res) => {
         )
     );
 
-    const mapData = (seasonData) => {
+    const mapData = (seasonData, tvShowData) => {
+        const { genres: rawGenres, name } = tvShowData;
+
         const {
             id,
             air_date,
@@ -206,7 +215,8 @@ router.get('/:id/season/:seasonNumber', async (req, res) => {
         } = seasonData;
 
         const poster = appImagePath('w300_and_h450_bestv2', poster_path);
-        const title = `Season ${season_number}`;
+
+        const genres = rawGenres.map((genre) => genresList[genre.id]);
 
         const cast = creditCast
             .sort((a, b) => b.total_episode_count - a.total_episode_count)
@@ -232,30 +242,32 @@ router.get('/:id/season/:seasonNumber', async (req, res) => {
             });
 
         const episodes = rawEpisodes.map((i) => {
-            const { episode_number, name, overview, still_path } = i;
+            const { id, episode_number, name, overview, still_path } = i;
 
             return {
+                id,
                 title: name,
-                episodeNumber: episode_number,
+                number: episode_number,
                 overview,
                 poster: appImagePath('w227_and_h127_bestv2', still_path)
             };
         });
 
         return {
-            // TODO: add props from tv details
             id,
             cast,
             episodes, // new prop
             overview,
             poster,
             release_date: air_date,
-            season_number, // new prop
-            title
+            seasonNumber: season_number, // new prop
+            // TODO: add props from tv details
+            title: name,
+            genres
         };
     };
 
-    const result = mapData(seasonData);
+    const result = mapData(seasonData, tvShowData);
 
     res.send(result);
 });
