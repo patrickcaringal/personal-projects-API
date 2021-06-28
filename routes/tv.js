@@ -124,7 +124,11 @@ router.get('/:id/details', async (req, res) => {
             rawSeasons.length < 2
                 ? []
                 : rawSeasons
-                      .filter((i) => i.season_number)
+                      .filter(
+                          (i) =>
+                              i.season_number &&
+                              new Date(i.air_date) <= new Date()
+                      )
                       .map((movie) => {
                           const {
                               id,
@@ -132,7 +136,8 @@ router.get('/:id/details', async (req, res) => {
                               poster_path,
                               air_date,
                               overview,
-                              episode_count
+                              episode_count,
+                              season_number
                           } = movie;
 
                           const poster = appImagePath('w185', poster_path);
@@ -143,7 +148,8 @@ router.get('/:id/details', async (req, res) => {
                               poster,
                               release_date: air_date,
                               overview,
-                              episode_count
+                              episode_count,
+                              seasonNumber: season_number
                           };
                       })
                       .sort(
@@ -163,7 +169,7 @@ router.get('/:id/details', async (req, res) => {
             keywords,
             overview,
             number_of_episodes,
-            number_of_seasons,
+            number_of_seasons: collection.length,
             photos,
             poster,
             production_companies,
