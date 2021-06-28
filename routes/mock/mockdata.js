@@ -928,10 +928,357 @@ const movie_detail = {
     vote_count: 4613
 };
 
+const season_detail = {
+    id: 109531,
+    cast: [
+        {
+            id: 4886,
+            poster:
+                'https://image.tmdb.org/t/p/w138_and_h175_face/x0VtaRWYKPEegZJv7cxqKtB9k98.jpg',
+            character: 'Daryl Dixon',
+            name: 'Norman Reedus',
+            episodes: 16
+        },
+        {
+            id: 82104,
+            poster:
+                'https://image.tmdb.org/t/p/w138_and_h175_face/z7H7QeQvr24vskGlANQhG43vozQ.jpg',
+            character: 'Michonne',
+            name: 'Danai Gurira',
+            episodes: 16
+        },
+        {
+            id: 31535,
+            poster:
+                'https://image.tmdb.org/t/p/w138_and_h175_face/a1yjfKwaLbSpgzOfDdnNk2nxaQx.jpg',
+            character: 'Carol Peletier',
+            name: 'Melissa McBride',
+            episodes: 16
+        },
+        {
+            id: 62220,
+            poster:
+                'https://image.tmdb.org/t/p/w138_and_h175_face/zJ9nZ5jqQTUD55GLKbgfiKlUoBN.jpg',
+            character: 'Maggie Greene',
+            name: 'Lauren Cohan',
+            episodes: 16
+        },
+        {
+            id: 84224,
+            poster:
+                'https://image.tmdb.org/t/p/w138_and_h175_face/3odIVQPRdJ0aNuecrtciodBi0rL.jpg',
+            character: 'Rosita Espinosa',
+            name: 'Christian Serratos',
+            episodes: 16
+        },
+        {
+            id: 1252310,
+            poster:
+                'https://image.tmdb.org/t/p/w138_and_h175_face/ueZwswzCiJ0KgLNCKnrBNQvl0aE.jpg',
+            character: 'Eugene Porter',
+            name: 'Josh McDermitt',
+            episodes: 16
+        },
+        {
+            id: 41688,
+            poster:
+                'https://image.tmdb.org/t/p/w138_and_h175_face/uX4k1H9sRx3VDewQRuQO0oQrWEW.jpg',
+            character: 'Gabriel Stokes',
+            name: 'Seth Gilliam',
+            episodes: 16
+        },
+        {
+            id: 555249,
+            poster:
+                'https://image.tmdb.org/t/p/w138_and_h175_face/jIGiAslF6KWcdHMV2sf4bETv72C.jpg',
+            character: 'Aaron',
+            name: 'Ross Marquand',
+            episodes: 16
+        },
+        {
+            id: 65640,
+            poster:
+                'https://image.tmdb.org/t/p/w138_and_h175_face/4WKDDalnICxaIsW9S37koUDIdwr.jpg',
+            character: 'Ezekiel',
+            name: 'Khary Payton',
+            episodes: 16
+        }
+    ],
+    episodes: [
+        {
+            id: 1575785,
+            title: 'A New Beginning',
+            number: 1,
+            overview:
+                'Rick and his group make a risky run into Washington, D.C. to search for artifacts they will need to build the civilization he and Carl envisioned.',
+            poster:
+                'https://image.tmdb.org/t/p/w227_and_h127_bestv2/lhDw84LpRKdQU3jadUQPGJszeUS.jpg'
+        },
+        {
+            id: 1586411,
+            title: 'The Bridge',
+            number: 2,
+            overview:
+                'The communities join forces to restore a bridge that will facilitate communication and trade; someone is gravely injured at the construction site.',
+            poster:
+                'https://image.tmdb.org/t/p/w227_and_h127_bestv2/sSIzhbeAUSwU1Jt0ExyxyAkHBuU.jpg'
+        },
+        {
+            id: 1586412,
+            title: 'Warning Signs',
+            number: 3,
+            overview:
+                "Rick's vision for the future is threatened by a mysterious disappearance that divides the work camp where the communities are building a bridge.",
+            poster:
+                'https://image.tmdb.org/t/p/w227_and_h127_bestv2/bJuQubZFVUNlJV7UX127YuNlEtJ.jpg'
+        },
+        {
+            id: 1586413,
+            title: 'The Obliged',
+            number: 4,
+            overview:
+                "Rick's vision of a civilized future is threatened by a sudden reckoning with past sins that remain unavenged and unforgiven.",
+            poster:
+                'https://image.tmdb.org/t/p/w227_and_h127_bestv2/sxUzTyvKwR7124E10xAqG021eII.jpg'
+        },
+        {
+            id: 1586414,
+            title: 'What Comes After',
+            number: 5,
+            overview:
+                'Rick is forced to face the past as he struggles to maintain the safety of the communities and protect the future he and Carl envisioned.',
+            poster:
+                'https://image.tmdb.org/t/p/w227_and_h127_bestv2/29WgDZsgbmfnxjaMcuLFZTUgEql.jpg'
+        },
+        {
+            id: 1589370,
+            title: 'Who Are You Now',
+            number: 6,
+            overview:
+                "The Survivors encounter unfamiliar faces outside the safety of their community's walls and must decide whether or not this new group can be trusted.",
+            poster:
+                'https://image.tmdb.org/t/p/w227_and_h127_bestv2/cDMdxs46SDbL4u7A9b6MEbDgpZU.jpg'
+        },
+        {
+            id: 1589373,
+            title: 'Stradivarius',
+            number: 7,
+            overview:
+                'Carol seeks out an old friend living alone in a wilderness teeming with walkers; survivors make the perilous trek to a new home.',
+            poster:
+                'https://image.tmdb.org/t/p/w227_and_h127_bestv2/vNWpL0E9Qk15BVv7VlOh41m6dxa.jpg'
+        },
+        {
+            id: 1589375,
+            title: 'Evolution',
+            number: 8,
+            overview:
+                'A small rescue mission braves a dangerous herd in their hunt for a missing comrade, only to discover a surprising threat that could doom them all.',
+            poster:
+                'https://image.tmdb.org/t/p/w227_and_h127_bestv2/engxvs6mMnKqsyTJcVyuWjZS2nV.jpg'
+        },
+        {
+            id: 1628147,
+            title: 'Adaptation',
+            number: 9,
+            overview:
+                'The group unmasks a disturbing and dangerous new threat. An escaped captive revisits his past.',
+            poster:
+                'https://image.tmdb.org/t/p/w227_and_h127_bestv2/ns6oxMmFX7u3jebTF9oGUEOUpBr.jpg'
+        },
+        {
+            id: 1628149,
+            title: 'Omega',
+            number: 10,
+            overview:
+                'A new arrival at the Hilltop opens up about the leader of a group of mask-wearing savages. A search party sets out on a daring mission to find two missing friends.',
+            poster:
+                'https://image.tmdb.org/t/p/w227_and_h127_bestv2/m7vPXqO65NOlw9WkDWYTb3tEWdh.jpg'
+        },
+        {
+            id: 1628150,
+            title: 'Bounty',
+            number: 11,
+            overview:
+                'The savage group led by Alpha confronts the Hilltop in a harrowing attempt to retrieve her daughter; a supply run for the Kingdom turns into a dangerous quest.',
+            poster:
+                'https://image.tmdb.org/t/p/w227_and_h127_bestv2/y4OqGiTmKzcnFKSYvAyTGfXg4N9.jpg'
+        },
+        {
+            id: 1628151,
+            title: 'Guardians',
+            number: 12,
+            overview:
+                'While one community struggles to ease tensions that threaten to divide from within, the true nature of another group comes into focus; a mission to rescue a friend has deadly consequences.',
+            poster:
+                'https://image.tmdb.org/t/p/w227_and_h127_bestv2/y9cUqHEBDh35hZArzrj3NzWPwWC.jpg'
+        },
+        {
+            id: 1628152,
+            title: 'Chokepoint',
+            number: 13,
+            overview:
+                "Daryl's daring rescue mission forces Alpha to unleash a group of her own to retrieve what belongs to her, even if the price is paid in blood; the Kingdom's plans to reunite the communities are put in jeopardy.",
+            poster:
+                'https://image.tmdb.org/t/p/w227_and_h127_bestv2/qi6W9DlaXGA799DwS1C4QdYzHuE.jpg'
+        },
+        {
+            id: 1628153,
+            title: 'Scars',
+            number: 14,
+            overview:
+                "An outsider's arrival forces Alexandria to rehash devastating old wounds; eye-opening secrets from the past are revealed.",
+            poster:
+                'https://image.tmdb.org/t/p/w227_and_h127_bestv2/oMQGfuXnvJpVyosvp0KJXaOhFPE.jpg'
+        },
+        {
+            id: 1628154,
+            title: 'The Calm Before',
+            number: 15,
+            overview:
+                'The fair at the Kingdom is underway, with all four communities coming together in celebration for the first time in years, while some pacts are renewed, other deals will come at a much steeper price.',
+            poster:
+                'https://image.tmdb.org/t/p/w227_and_h127_bestv2/jZwdCtSFuoVUteeXAsRCpwfSQYx.jpg'
+        },
+        {
+            id: 1628155,
+            title: 'The Storm',
+            number: 16,
+            overview:
+                'In the aftermath of an overwhelming loss, the communities must brave a ferocious blizzard; as one group deals with an enemy from within, another is forced to make a life or death decision.',
+            poster:
+                'https://image.tmdb.org/t/p/w227_and_h127_bestv2/hAmXL3HGaOdYDB4Lkfx3dNjaCxh.jpg'
+        }
+    ],
+    overview:
+        'With the defeat of Negan and the Saviors, the survivors are now rebuilding civilisation under Rick’s leadership. However, the group are forced to face their biggest threat yet as the walkers around them have started whispering.',
+    poster:
+        'https://image.tmdb.org/t/p/w300_and_h450_bestv2/5KKovNGmh20sDBnyFyuaYTOSmh8.jpg',
+    release_date: '2018-10-07',
+    seasonNumber: 9,
+    title: 'The Walking Dead',
+    genres: ['Action & Adventure', 'Drama', 'Sci-Fi & Fantasy'],
+    keywords: [
+        { name: 'post-apocalyptic future', id: 4458 },
+        { name: 'gore', id: 10292 },
+        { name: 'survivor', id: 5385 },
+        { name: 'undead', id: 10327 },
+        { name: 'based on comic', id: 9717 },
+        { name: 'horror', id: 8087 },
+        { name: 'survival', id: 10349 },
+        { name: 'zombie', id: 12377 }
+    ],
+    production_companies: [
+        {
+            logo:
+                'https://image.tmdb.org/t/p/w92/fOALFvgnO1ZdIaA9PNIAAuaDKWd.png',
+            name: 'AMC Networks'
+        },
+        {
+            logo:
+                'https://image.tmdb.org/t/p/w92/simDvqT8y6jhP530ggUMbikvVKc.png',
+            name: 'Circle of Confusion'
+        },
+        {
+            logo:
+                'https://image.tmdb.org/t/p/w92/tWM9pmzVYxok4GbQIttxdcml1yT.png',
+            name: 'Valhalla Motion Pictures'
+        },
+        {
+            logo:
+                'https://image.tmdb.org/t/p/w92/bli7HkPOXOEWsDwDK0W7XXfeUU2.png',
+            name: 'Darkwoods Productions'
+        }
+    ],
+    recommendations: [
+        {
+            id: 62286,
+            title: 'Fear the Walking Dead',
+            poster:
+                'https://image.tmdb.org/t/p/w185/4UjiPdFKJGJYdxwRs2Rzg7EmWqr.jpg',
+            genres: ['Action & Adventure', 'Drama'],
+            media: 'tv'
+        },
+        {
+            id: 1399,
+            title: 'Game of Thrones',
+            poster:
+                'https://image.tmdb.org/t/p/w185/u3bZgnGQ9T01sWNhyveQz0wH0Hl.jpg',
+            genres: ['Sci-Fi & Fantasy', 'Drama', 'Action & Adventure'],
+            media: 'tv'
+        },
+        {
+            id: 1396,
+            title: 'Breaking Bad',
+            poster:
+                'https://image.tmdb.org/t/p/w185/ggFHVNu6YYI5L9pCfOacjizRGt.jpg',
+            genres: ['Drama'],
+            media: 'tv'
+        },
+        {
+            id: 4607,
+            title: 'Lost',
+            poster:
+                'https://image.tmdb.org/t/p/w185/og6S0aTZU6YUJAbqxeKjCa3kY1E.jpg',
+            genres: ['Action & Adventure', 'Mystery'],
+            media: 'tv'
+        },
+        {
+            id: 1407,
+            title: 'Homeland',
+            poster:
+                'https://image.tmdb.org/t/p/w185/6GAvS2e6VIRsms9FpVt33PsCoEW.jpg',
+            genres: ['Drama', 'Action & Adventure', 'Crime', 'War & Politics'],
+            media: 'tv'
+        },
+        {
+            id: 1405,
+            title: 'Dexter',
+            poster:
+                'https://image.tmdb.org/t/p/w185/58H6Ctze1nnpS0s9vPmAAzPcipR.jpg',
+            genres: ['Crime', 'Drama', 'Mystery'],
+            media: 'tv'
+        },
+        {
+            id: 44217,
+            title: 'Vikings',
+            poster:
+                'https://image.tmdb.org/t/p/w185/bQLrHIRNEkE3PdIWQrZHynQZazu.jpg',
+            genres: ['Action & Adventure', 'Drama'],
+            media: 'tv'
+        },
+        {
+            id: 1418,
+            title: 'The Big Bang Theory',
+            poster:
+                'https://image.tmdb.org/t/p/w185/ooBGRQBdbGzBxAVfExiO8r7kloA.jpg',
+            genres: ['Comedy'],
+            media: 'tv'
+        },
+        {
+            id: 94305,
+            title: 'The Walking Dead: World Beyond',
+            poster:
+                'https://image.tmdb.org/t/p/w185/z31GxpVgDsFAF4paZR8PRsiP16D.jpg',
+            genres: ['Drama', 'Sci-Fi & Fantasy', 'Mystery'],
+            media: 'tv'
+        },
+        {
+            id: 1622,
+            title: 'Supernatural',
+            poster:
+                'https://image.tmdb.org/t/p/w185/KoYWXbnYuS3b0GyQPkbuexlVK9.jpg',
+            genres: ['Drama', 'Mystery', 'Sci-Fi & Fantasy'],
+            media: 'tv'
+        }
+    ]
+};
+
 module.exports = {
     popular_movies,
     discover_movies,
     discover_people,
     discover_tvshows,
-    movie_detail
+    movie_detail,
+    season_detail
 };

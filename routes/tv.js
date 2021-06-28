@@ -195,8 +195,8 @@ router.get('/:id/season/:seasonNumber/details', async (req, res) => {
 
     const { data: tvShowData } = await axios.get(
         appEndpoint(
-            `tv/${tvShowId}`
-            // 'append_to_response=recommendations,keywords'
+            `tv/${tvShowId}`,
+            'append_to_response=recommendations,keywords'
         )
     );
 
@@ -208,7 +208,13 @@ router.get('/:id/season/:seasonNumber/details', async (req, res) => {
     );
 
     const mapData = (seasonData, tvShowData) => {
-        const { genres: rawGenres, name } = tvShowData;
+        const {
+            genres: rawGenres,
+            keywords: { results: keywords },
+            name,
+            production_companies: raw_production_companies,
+            recommendations: raw_recommendations
+        } = tvShowData;
 
         const {
             id,
@@ -259,6 +265,37 @@ router.get('/:id/season/:seasonNumber/details', async (req, res) => {
             };
         });
 
+        const production_companies = raw_production_companies
+            .filter((i) => i.logo_path)
+            .map((movie) => ({
+                logo: appImagePath('w92', movie.logo_path),
+                name: movie.name
+            }));
+
+        const recommendations = raw_recommendations.results
+            .slice(0, 10)
+            .map((movie) => {
+                const {
+                    id,
+                    name,
+                    media_type,
+                    poster_path,
+                    genre_ids,
+                    release_date
+                } = movie;
+                const poster = appImagePath('w185', poster_path);
+                const genres = genre_ids.map((genre) => genresList[genre]);
+
+                return {
+                    id,
+                    title: name,
+                    poster,
+                    genres,
+                    release_date,
+                    media: media_type
+                };
+            });
+
         return {
             id,
             cast,
@@ -269,7 +306,10 @@ router.get('/:id/season/:seasonNumber/details', async (req, res) => {
             seasonNumber: season_number, // new prop
             // TODO: add props from tv details
             title: name,
-            genres
+            genres,
+            keywords,
+            production_companies,
+            recommendations
         };
     };
 
