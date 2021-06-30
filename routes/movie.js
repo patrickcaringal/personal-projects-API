@@ -92,7 +92,7 @@ router.get('/:id/details', async (req, res) => {
             }));
 
         const recommendations = raw_recommendations.results
-            .slice(0, 10)
+            .slice(0, 6)
             .map((movie) => {
                 const {
                     id,

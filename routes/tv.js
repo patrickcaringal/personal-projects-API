@@ -90,7 +90,7 @@ router.get('/:id/details', async (req, res) => {
             }));
 
         const recommendations = raw_recommendations.results
-            .slice(0, 10)
+            .slice(0, 6)
             .map((movie) => {
                 const {
                     id,
@@ -130,7 +130,7 @@ router.get('/:id/details', async (req, res) => {
                     name,
                     poster_path,
                     air_date,
-                    overview,
+                    overview: seasonOverview,
                     episode_count,
                     season_number
                 } = movie;
@@ -142,7 +142,7 @@ router.get('/:id/details', async (req, res) => {
                     title: name,
                     poster,
                     release_date: air_date,
-                    overview,
+                    overview: seasonOverview || overview,
                     episode_count,
                     seasonNumber: season_number
                 };
@@ -268,7 +268,7 @@ router.get('/:id/season/:seasonNumber/details', async (req, res) => {
             }));
 
         const recommendations = raw_recommendations.results
-            .slice(0, 10)
+            .slice(0, 6)
             .map((movie) => {
                 const {
                     id,
