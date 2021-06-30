@@ -12,55 +12,6 @@ const {
 
 const genresList = getGenres();
 
-router.get('/popular', async (req, res) => {
-    let { data: movies } = await axios.get(appEndpoint('movie/popular'));
-
-    movies = movies.results.map((movie) => {
-        const { id, title, poster_path, genre_ids, release_date } = movie;
-        const poster = appImagePath('w185', poster_path);
-        const genres = genre_ids.map((genre) => genresList[genre]);
-
-        return {
-            id,
-            title,
-            poster,
-            genres,
-            release_date
-        };
-    });
-
-    res.send(movies);
-});
-
-router.get('/discover', async (req, res) => {
-    const queryString = getQueryString(req.query);
-
-    const { data } = await axios.get(
-        appEndpoint('discover/movie', `${queryString}&with_release_type=3`)
-    );
-
-    const result = {
-        ...data,
-        movies: data.results.map((movie) => {
-            const { id, title, poster_path, genre_ids, release_date } = movie;
-            const poster = appImagePath('w185', poster_path);
-            const genres = genre_ids.map((genre) => genresList[genre]);
-
-            return {
-                id,
-                title,
-                poster,
-                genres,
-                release_date
-            };
-        })
-    };
-
-    delete result.results;
-
-    res.send(result);
-});
-
 router.get('/:id/details', async (req, res) => {
     const { id: movieId } = req.params;
 
@@ -79,7 +30,7 @@ router.get('/:id/details', async (req, res) => {
             data: { parts = [] }
         } = await axios.get(appEndpoint(`collection/${collectionId}`));
 
-        rawCollection = parts;
+        rawCollection = parts.filter((i) => i.vote_count);
     }
 
     const mapData = (data) => {
@@ -172,9 +123,8 @@ router.get('/:id/details', async (req, res) => {
             }));
 
         let collection = [];
-        if (rawCollection) {
+        if (rawCollection.length > 1) {
             collection = rawCollection
-                .filter((i) => i.vote_count)
                 .map((movie) => {
                     const {
                         id,

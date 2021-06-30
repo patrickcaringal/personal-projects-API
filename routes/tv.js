@@ -120,43 +120,36 @@ router.get('/:id/details', async (req, res) => {
                 name: movie.name
             }));
 
-        let collection =
-            rawSeasons.length < 2
-                ? []
-                : rawSeasons
-                      .filter(
-                          (i) =>
-                              i.season_number &&
-                              new Date(i.air_date) <= new Date()
-                      )
-                      .map((movie) => {
-                          const {
-                              id,
-                              name,
-                              poster_path,
-                              air_date,
-                              overview,
-                              episode_count,
-                              season_number
-                          } = movie;
+        let collection = rawSeasons
+            .filter(
+                (i) => i.season_number && new Date(i.air_date) <= new Date()
+            )
+            .map((movie) => {
+                const {
+                    id,
+                    name,
+                    poster_path,
+                    air_date,
+                    overview,
+                    episode_count,
+                    season_number
+                } = movie;
 
-                          const poster = appImagePath('w185', poster_path);
+                const poster = appImagePath('w185', poster_path);
 
-                          return {
-                              id,
-                              title: name,
-                              poster,
-                              release_date: air_date,
-                              overview,
-                              episode_count,
-                              seasonNumber: season_number
-                          };
-                      })
-                      .sort(
-                          (a, b) =>
-                              new Date(b?.release_date) -
-                              new Date(a?.release_date)
-                      );
+                return {
+                    id,
+                    title: name,
+                    poster,
+                    release_date: air_date,
+                    overview,
+                    episode_count,
+                    seasonNumber: season_number
+                };
+            })
+            .sort(
+                (a, b) => new Date(b?.release_date) - new Date(a?.release_date)
+            );
 
         return {
             id,
@@ -253,17 +246,19 @@ router.get('/:id/season/:seasonNumber/details', async (req, res) => {
                 };
             });
 
-        const episodes = rawEpisodes.map((i) => {
-            const { id, episode_number, name, overview, still_path } = i;
+        const episodes = rawEpisodes
+            .filter((i) => i.overview)
+            .map((i) => {
+                const { id, episode_number, name, overview, still_path } = i;
 
-            return {
-                id,
-                title: name,
-                number: episode_number,
-                overview,
-                poster: appImagePath('w227_and_h127_bestv2', still_path)
-            };
-        });
+                return {
+                    id,
+                    title: name,
+                    number: episode_number,
+                    overview,
+                    poster: appImagePath('w227_and_h127_bestv2', still_path)
+                };
+            });
 
         const production_companies = raw_production_companies
             .filter((i) => i.logo_path)
