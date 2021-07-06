@@ -2,6 +2,7 @@ const movie = require('./movie');
 const media = require('./media');
 const person = require('./person');
 const tv = require('./tv');
+const search = require('./search');
 // const genre = require('./genre').router;
 // const trending = require('./trending');
 
@@ -20,6 +21,7 @@ module.exports = {
             app.use('/movie', movie);
             app.use('/person', person);
             app.use('/tv', tv);
+            app.use('/search', search);
         }
     }
 };

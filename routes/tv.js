@@ -205,6 +205,7 @@ router.get('/:id/season/:seasonNumber/details', async (req, res) => {
             genres: rawGenres,
             keywords: { results: keywords },
             name,
+            overview,
             production_companies: raw_production_companies,
             recommendations: raw_recommendations
         } = tvShowData;
@@ -214,7 +215,7 @@ router.get('/:id/season/:seasonNumber/details', async (req, res) => {
             air_date,
             aggregate_credits: { cast: creditCast },
             episodes: rawEpisodes,
-            overview,
+            overview: seasonOverview,
             poster_path,
             season_number
         } = seasonData;
@@ -295,7 +296,7 @@ router.get('/:id/season/:seasonNumber/details', async (req, res) => {
             id,
             cast,
             episodes, // new prop
-            overview,
+            overview: seasonOverview || overview,
             poster,
             release_date: air_date,
             seasonNumber: season_number, // new prop
