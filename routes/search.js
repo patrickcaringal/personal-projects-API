@@ -143,7 +143,7 @@ router.get('/person', async (req, res) => {
                     ? appImagePath('w138_and_h175_face', profile_path)
                     : getImgPlaceholder(gender),
                 department: known_for_department,
-                credits
+                knownFor: credits
             };
         });
 
