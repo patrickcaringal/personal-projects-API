@@ -16,6 +16,7 @@ module.exports = {
             app.use('/movie', require('./mock/movie'));
             app.use('/person', require('./mock/people'));
             app.use('/tv', require('./mock/tv'));
+            app.use('/search', require('./mock/search'));
         } else {
             app.use('/media', media);
             app.use('/movie', movie);

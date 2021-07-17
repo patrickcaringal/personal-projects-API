@@ -92,14 +92,14 @@ router.get('/tv', async (req, res) => {
         let { results, ...rest } = data;
 
         results = results.map((tvShow) => {
-            const { id, name, poster_path, air_date, overview } = tvShow;
+            const { id, name, poster_path, first_air_date, overview } = tvShow;
             const poster = appImagePath('w185', poster_path);
 
             return {
                 id,
                 title: name,
                 poster,
-                release_date: air_date,
+                release_date: first_air_date,
                 overview
             };
         });
@@ -135,7 +135,7 @@ router.get('/person', async (req, res) => {
             } = person;
             const poster = appImagePath('w185', profile_path);
 
-            const credits = known_for.map((i) => i.title);
+            const credits = known_for.map((i) => i.title).filter((i) => i);
             return {
                 id,
                 name,
